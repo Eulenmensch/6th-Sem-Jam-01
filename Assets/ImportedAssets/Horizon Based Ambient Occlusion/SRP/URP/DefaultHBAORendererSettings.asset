@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 363227210167b0849b0f495fc8bd8316, type: 3}
+  m_Name: DefaultHBAORendererSettings
+  m_EditorClassIdentifier: 
+  m_Presets:
+    preset: 4
+  m_General:
+    enable: 1
+    quality: 4
+    deinterleaving: 0
+    resolution: 0
+    noiseType: 0
+    debugMode: 0
+  m_AO:
+    radius: 2.18
+    maxRadiusPixels: 256
+    bias: 0.05
+    intensity: 1.73
+    useMultiBounce: 0
+    multiBounceInfluence: 1
+    offscreenSamplesContribution: 0
+    maxDistance: 150
+    distanceFalloff: 50
+    perPixelNormals: 1
+    baseColor: {r: 0, g: 0, b: 0, a: 1}
+  m_TemporalFilter:
+    enabled: 0
+    varianceClipping: 1
+  m_Blur:
+    type: 2
+    sharpness: 9
+  m_ColorBleeding:
+    enabled: 1
+    saturation: 1.44
+    brightnessMask: 1
+    brightnessMaskRange: {x: 0, y: 0.5}
