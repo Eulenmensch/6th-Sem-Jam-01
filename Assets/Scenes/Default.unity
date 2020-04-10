@@ -918,8 +918,8 @@ MonoBehaviour:
   m_LookaheadIgnoreY: 0
   m_HorizontalDamping: 0.5
   m_VerticalDamping: 0.5
-  m_ScreenX: 0.4
-  m_ScreenY: 0.6
+  m_ScreenX: 0.5
+  m_ScreenY: 0.5
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_SoftZoneWidth: 0.8
@@ -940,7 +940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: -0.7534164, z: -4.761165}
+  m_FollowOffset: {x: 0, y: 3, z: -4}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1092,8 +1092,8 @@ MonoBehaviour:
   m_LookaheadIgnoreY: 0
   m_HorizontalDamping: 0
   m_VerticalDamping: 0
-  m_ScreenX: 0.35
-  m_ScreenY: 0.65
+  m_ScreenX: 0.5
+  m_ScreenY: 0.5
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_SoftZoneWidth: 0.8
@@ -1114,7 +1114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: -0.7534164, z: -4.761165}
+  m_FollowOffset: {x: 0, y: 3, z: -4}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1240,7 +1240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 7.393686, z: -6.599441}
+  m_FollowOffset: {x: 0, y: -1.228375, z: -5.199016}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1304,6 +1304,7 @@ GameObject:
   - component: {fileID: 556412530}
   - component: {fileID: 556412529}
   - component: {fileID: 556412531}
+  - component: {fileID: 556412532}
   m_Layer: 0
   m_Name: BulletTimeFreeLook
   m_TagString: Untagged
@@ -1459,6 +1460,21 @@ MonoBehaviour:
   m_Damping: 0.13
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
+--- !u!114 &556412532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556412528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d70cc20219cd84593f67d248eafe36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Offset: {x: 0.5, y: 0.53, z: 0}
+  m_ApplyAfter: 1
+  m_PreserveComposition: 0
 --- !u!1 &646238433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,6 +1745,7 @@ GameObject:
   - component: {fileID: 821702870}
   - component: {fileID: 821702869}
   - component: {fileID: 821702871}
+  - component: {fileID: 821702872}
   m_Layer: 0
   m_Name: CM FreeLook1
   m_TagString: Untagged
@@ -1880,10 +1897,25 @@ MonoBehaviour:
   m_CameraRadius: 0.1
   m_Strategy: 1
   m_MaximumEffort: 4
-  m_SmoothingTime: 0.25
-  m_Damping: 0.13
-  m_DampingWhenOccluded: 0
+  m_SmoothingTime: 0.15
+  m_Damping: 1.31
+  m_DampingWhenOccluded: 0.39
   m_OptimalTargetDistance: 0
+--- !u!114 &821702872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821702868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d70cc20219cd84593f67d248eafe36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Offset: {x: 0, y: 0.47, z: 0}
+  m_ApplyAfter: 1
+  m_PreserveComposition: 0
 --- !u!1 &888431299
 GameObject:
   m_ObjectHideFlags: 3
@@ -1957,7 +1989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 7.393686, z: -6.599441}
+  m_FollowOffset: {x: 0, y: -1.228375, z: -5.199016}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -2207,7 +2239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 7.393686, z: -6.599441}
+  m_FollowOffset: {x: 0, y: -1.228375, z: -5.199016}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -2354,8 +2386,8 @@ MonoBehaviour:
   m_LookaheadIgnoreY: 0
   m_HorizontalDamping: 0.5
   m_VerticalDamping: 0.5
-  m_ScreenX: 0.35
-  m_ScreenY: 0.65
+  m_ScreenX: 0.5
+  m_ScreenY: 0.5
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_SoftZoneWidth: 0.8
@@ -2376,7 +2408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: -0.7534164, z: -4.761165}
+  m_FollowOffset: {x: 0, y: 3, z: -4}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -4666,8 +4698,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043027948}
-  m_LocalRotation: {x: 0.000030378471, y: 0.96205926, z: -0.2728406, w: 0.000107117085}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.000015049122, y: 0.99082357, z: 0.13516192, w: 0.00011031974}
+  m_LocalPosition: {x: 0.00069155777, y: -6.531035, z: -3.1055717}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 516441102}

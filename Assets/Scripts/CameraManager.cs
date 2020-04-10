@@ -21,7 +21,7 @@ public class CameraManager : MonoBehaviour
     public float GetAxisCustom(string axisName)
     {
         LookDelta = inputActions.Player.Look.ReadValue<Vector2>(); // reads theavailable camera values and uses them.
-        LookDelta.Normalize();
+        //LookDelta.Normalize();
 
         if (axisName == "Mouse X")
         {
