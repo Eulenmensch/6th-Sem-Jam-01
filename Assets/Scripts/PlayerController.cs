@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
     private CharacterController CharacterControllerRef;
 
     public GameObject Camera;
-    public Transform GroundCheckSphere;
-    public float GroundCheckRadius;
-    public LayerMask GroundLayerMask;
+    //public Transform GroundCheckSphere;
+    //public float GroundCheckRadius;
+    //public LayerMask GroundLayerMask;
 
     public float Speed;
     public float AirControlFactor;
@@ -54,6 +55,7 @@ public class PlayerController : MonoBehaviour
         HandleDoubleJumpInput();
         ApplyDoubleJumpInput();
         ApplyGravity();
+        SetRotationToMoveDirection();
         Debug.DrawRay(transform.position, MoveDirection, Color.magenta); //TODO: Remove this after debugging
         CharacterControllerRef.Move(MoveDirection * Time.deltaTime);
     }
@@ -129,7 +131,7 @@ public class PlayerController : MonoBehaviour
         {
             VelocityGravitational.y = 0.0f;
         }
-        else if (PlayerStates.Instance.MovementState == PlayerStates.MovementStates.Jumping && !IsReceivingJumpInput && currentVelocityY >= 0) // make the jump shorter if the jump button was released before reaching the apex
+        else if (!IsGrounded() && !IsReceivingJumpInput && currentVelocityY >= 0) // make the jump shorter if the jump button was released before reaching the apex
         {
             VelocityGravitational.y -= GravitationalAcceleration * ShortJumpModifier * Time.deltaTime;
         }
@@ -144,9 +146,20 @@ public class PlayerController : MonoBehaviour
         MoveDirection.y += VelocityGravitational.y;
     }
 
+    void SetRotationToMoveDirection()
+    {
+        Vector3 lookDirection = new Vector3(HorizontalInput, 0.0f, VerticalInput);
+        if (lookDirection.magnitude >= 0.1)
+        {
+            transform.DORotateQuaternion(Quaternion.LookRotation(lookDirection, Vector3.up), 0.4f).SetEase(Ease.OutCirc);
+            //transform.rotation = Quaternion.LookRotation(lookDirection, Vector3.up);
+        }
+    }
+
     bool IsGrounded()
     {
-        return Physics.CheckSphere(GroundCheckSphere.position, GroundCheckRadius, GroundLayerMask);
+        //return Physics.CheckSphere(GroundCheckSphere.position, GroundCheckRadius, GroundLayerMask); //TODO: Delete this if the code below is less errorprone
+        return (CharacterControllerRef.collisionFlags & CollisionFlags.Below) != 0;
     }
 
     public void GetMoveInput(InputAction.CallbackContext context)
@@ -154,14 +167,15 @@ public class PlayerController : MonoBehaviour
         inputVector = context.ReadValue<Vector2>();
     }
 
-    void RotateMoveInputToCameraForward(){
+    void RotateMoveInputToCameraForward()
+    {
         cameraAngle = (Camera.transform.rotation.eulerAngles.y) * Mathf.Deg2Rad;
 
         rotatedInputVector = new Vector2(
             inputVector.x * Mathf.Cos(-cameraAngle) - inputVector.y * Mathf.Sin(-cameraAngle),
             inputVector.x * Mathf.Sin(-cameraAngle) + inputVector.y * Mathf.Cos(-cameraAngle)
         );
-        
+
 
         HorizontalInput = rotatedInputVector.x;
         VerticalInput = rotatedInputVector.y;

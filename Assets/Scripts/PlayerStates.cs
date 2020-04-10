@@ -11,18 +11,14 @@ public class PlayerStates : Singleton<PlayerStates>
         Idle,
         Jumping,
         DoubleJumping,
+        WallRunning,
         Falling
     }
-
-    public bool IsTalking;
-    public bool IsCarrying;
 
     public MovementStates MovementState;
 
     private void Awake()
     {
         MovementState = MovementStates.Idle;
-        IsTalking = false;
-        IsCarrying = false;
     }
 }

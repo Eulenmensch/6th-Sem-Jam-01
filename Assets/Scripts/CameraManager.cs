@@ -7,7 +7,7 @@ public class CameraManager : MonoBehaviour
 {
     private InputActions inputActions; //default controls is just the Csharp code you generate from the action maps asset
     private Vector2 LookDelta;
- 
+
     private void Awake() => inputActions = new InputActions();
 
     private void OnEnable() => inputActions.Player.Enable();
