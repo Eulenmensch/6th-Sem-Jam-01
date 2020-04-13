@@ -9,9 +9,11 @@ public class PlayerStates : Singleton<PlayerStates>
     public enum MovementStates
     {
         Idle,
+        Walking,
         Jumping,
         DoubleJumping,
         WallRunning,
+        Dashing,
         Falling
     }
 

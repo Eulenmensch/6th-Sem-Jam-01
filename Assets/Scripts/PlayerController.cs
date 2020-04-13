@@ -16,10 +16,12 @@ public class PlayerController : MonoBehaviour
     public float Speed;
     public float AirControlFactor;
     public float GravitationalAcceleration;
+    public float Damping;
     public float JumpHeight;
     public float DoubleJumpHeight;
     public float FallModifier;
     public float ShortJumpModifier;
+    public float Deadzone;
 
     private float HorizontalInput;
     private float VerticalInput;
@@ -31,8 +33,9 @@ public class PlayerController : MonoBehaviour
     Vector2 inputVector;
     Vector2 rotatedInputVector;
 
-    private Vector3 MoveDirection;
-    private Vector3 VelocityGravitational;
+    public Vector3 MoveDirection;
+    public Vector3 VelocityGravitational;
+    public Vector3 CurrentImpact;
 
 
     private void Start()
@@ -49,15 +52,39 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        ApplyMoveInput();
-        HandleJumpInput();
-        ApplyJumpInput();
-        HandleDoubleJumpInput();
-        ApplyDoubleJumpInput();
-        ApplyGravity();
+        if (PlayerStates.Instance.MovementState != PlayerStates.MovementStates.Dashing)
+        {
+            HandleMoveInput();
+            ApplyMoveInput();
+            HandleJumpInput();
+            ApplyJumpInput();
+            HandleDoubleJumpInput();
+            ApplyDoubleJumpInput();
+            ApplyGravity();
+        }
+        HandleImpact();
+        ApplyImpact();
         SetRotationToMoveDirection();
         Debug.DrawRay(transform.position, MoveDirection, Color.magenta); //TODO: Remove this after debugging
         CharacterControllerRef.Move(MoveDirection * Time.deltaTime);
+
+        Debug.Log(PlayerStates.Instance.MovementState);
+    }
+
+    void HandleMoveInput()
+    {
+        Vector3 inputVector = new Vector3(HorizontalInput, 0.0f, VerticalInput);
+        if (IsGrounded())
+        {
+            if (inputVector.magnitude >= Deadzone)
+            {
+                PlayerStates.Instance.MovementState = PlayerStates.MovementStates.Walking;
+            }
+            else
+            {
+                PlayerStates.Instance.MovementState = PlayerStates.MovementStates.Idle;
+            }
+        }
     }
 
     void ApplyMoveInput()
@@ -81,7 +108,7 @@ public class PlayerController : MonoBehaviour
     {
         if (IsGrounded())
         {
-            if (IsReceivingJumpInput && PlayerStates.Instance.MovementState == PlayerStates.MovementStates.Idle && HasStoppedReceivingJumpInput)
+            if (IsReceivingJumpInput && PlayerStates.Instance.MovementState != PlayerStates.MovementStates.Jumping && HasStoppedReceivingJumpInput)
             {
                 HasStoppedReceivingJumpInput = false;
                 PlayerStates.Instance.MovementState = PlayerStates.MovementStates.Jumping;
@@ -146,6 +173,15 @@ public class PlayerController : MonoBehaviour
         MoveDirection.y += VelocityGravitational.y;
     }
 
+    void HandleImpact()
+    {
+        CurrentImpact = Vector3.Lerp(CurrentImpact, Vector3.zero, Damping * Time.deltaTime);
+    }
+    void ApplyImpact()
+    {
+        MoveDirection += CurrentImpact;
+    }
+
     void SetRotationToMoveDirection()
     {
         Vector3 lookDirection = new Vector3(HorizontalInput, 0.0f, VerticalInput);
@@ -160,6 +196,16 @@ public class PlayerController : MonoBehaviour
     {
         //return Physics.CheckSphere(GroundCheckSphere.position, GroundCheckRadius, GroundLayerMask); //TODO: Delete this if the code below is less errorprone
         return (CharacterControllerRef.collisionFlags & CollisionFlags.Below) != 0;
+    }
+
+    public void AddImpact(Vector3 direction, float magnitude)
+    {
+        CurrentImpact += direction * magnitude;
+    }
+
+    public void ResetImpact()
+    {
+        CurrentImpact = Vector3.zero;
     }
 
     public void GetMoveInput(InputAction.CallbackContext context)

@@ -62,9 +62,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""7fd070aa-7418-4da2-9250-02bd15944646"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press(behavior=1)""
+                    ""interactions"": ""Press(behavior=2)""
                 }
             ],
             ""bindings"": [

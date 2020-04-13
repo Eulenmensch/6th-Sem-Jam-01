@@ -11,18 +11,6 @@ public class ProjectileController : MonoBehaviour
 
     bool IsReceivingShootInput;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Shoot();
-    }
-
     Vector3 GetAimDirection() //FIXME: This needs to be more intricate with a raycast from camera and then building a direction from spawner position to hit position
     {
         return Camera.main.transform.forward;
@@ -30,7 +18,7 @@ public class ProjectileController : MonoBehaviour
 
     void Shoot()
     {
-        Debug.Log("pew");
+        Destroy(GameObject.FindGameObjectWithTag("Projectile"));
         InputEvents.Instance.ShootProjectile(Projectile, GetAimDirection(), ProjectileSpeed, KillDistance);
     }
 

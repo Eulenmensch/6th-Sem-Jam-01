@@ -25,6 +25,10 @@ public class ProjectileBehaviour : MonoBehaviour
         if ((transform.position - Spawner.transform.position).magnitude >= KillDistance)
         {
             Destroy(gameObject);
+            if (PlayerStates.Instance.MovementState == PlayerStates.MovementStates.Dashing)
+            {
+                PlayerStates.Instance.MovementState = PlayerStates.MovementStates.Falling;
+            }
         }
     }
 
@@ -32,4 +36,5 @@ public class ProjectileBehaviour : MonoBehaviour
     {
         Direction = Vector3.Reflect(Direction, other.GetContact(0).normal);
     }
+
 }

@@ -1,19 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ProjectileSpawner : MonoBehaviour
 {
+    private ProjectileBehaviour ActiveProjectileBehaviour;
     void SpawnProjectile(GameObject projectile, Vector3 aimDirection, float speed, float killDistance)
     {
         var projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity);
-        var projectileBehaviour = projectileInstance.GetComponent<ProjectileBehaviour>();
-        if (projectileBehaviour != null)
+        ActiveProjectileBehaviour = projectileInstance.GetComponent<ProjectileBehaviour>();
+        if (ActiveProjectileBehaviour != null)
         {
-            projectileBehaviour.Speed = speed;
-            projectileBehaviour.Direction = aimDirection;
-            projectileBehaviour.KillDistance = killDistance;
-            projectileBehaviour.Spawner = gameObject;
+            ActiveProjectileBehaviour.Speed = speed;
+            ActiveProjectileBehaviour.Direction = aimDirection;
+            ActiveProjectileBehaviour.KillDistance = killDistance;
+            ActiveProjectileBehaviour.Spawner = gameObject;
         }
     }
 
@@ -24,5 +26,13 @@ public class ProjectileSpawner : MonoBehaviour
     private void OnDisable()
     {
         InputEvents.Instance.OnShootProjectile -= SpawnProjectile;
+    }
+
+    public void GetDashInput(InputAction.CallbackContext context)
+    {
+        if (context.canceled && ActiveProjectileBehaviour != null)
+        {
+            ActiveProjectileBehaviour.Speed = 0.0f;
+        }
     }
 }
