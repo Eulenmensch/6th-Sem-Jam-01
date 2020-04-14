@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
     public Vector3 VelocityGravitational;
     public Vector3 CurrentImpact;
 
+    private int JumpCount;
+
 
     private void Start()
     {
@@ -52,6 +54,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (IsGrounded())
+        {
+            JumpCount = 0;
+        }
         if (PlayerStates.Instance.MovementState != PlayerStates.MovementStates.Dashing)
         {
             HandleMoveInput();
@@ -111,6 +117,7 @@ public class PlayerController : MonoBehaviour
             if (IsReceivingJumpInput && PlayerStates.Instance.MovementState != PlayerStates.MovementStates.Jumping && HasStoppedReceivingJumpInput)
             {
                 HasStoppedReceivingJumpInput = false;
+                JumpCount++;
                 PlayerStates.Instance.MovementState = PlayerStates.MovementStates.Jumping;
             }
             else if (PlayerStates.Instance.MovementState == PlayerStates.MovementStates.Jumping)
@@ -136,6 +143,7 @@ public class PlayerController : MonoBehaviour
             PlayerStates.Instance.MovementState = PlayerStates.MovementStates.DoubleJumping;
             VelocityGravitational.y = 0.0f;
             IsReceivingDoubleJumpInput = false;
+            JumpCount += 2;
         }
         else if (IsGrounded() && PlayerStates.Instance.MovementState == PlayerStates.MovementStates.DoubleJumping)
         {
@@ -196,6 +204,7 @@ public class PlayerController : MonoBehaviour
     {
         //return Physics.CheckSphere(GroundCheckSphere.position, GroundCheckRadius, GroundLayerMask); //TODO: Delete this if the code below is less errorprone
         return (CharacterControllerRef.collisionFlags & CollisionFlags.Below) != 0;
+        //return (CharacterControllerRef.isGrounded);
     }
 
     public void AddImpact(Vector3 direction, float magnitude)
@@ -242,7 +251,7 @@ public class PlayerController : MonoBehaviour
 
     public void GetDoubleJumpInput(InputAction.CallbackContext context)
     {
-        if (context.started && PlayerStates.Instance.MovementState == PlayerStates.MovementStates.Jumping)
+        if (context.started && (PlayerStates.Instance.MovementState == PlayerStates.MovementStates.Jumping || PlayerStates.Instance.MovementState == PlayerStates.MovementStates.Falling))
         {
             IsReceivingDoubleJumpInput = true;
         }
