@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 706873943}
-  m_IndirectSpecularColor: {r: 0.1752542, g: 0.21926217, b: 0.30157363, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -445,6 +445,7 @@ GameObject:
   - component: {fileID: 236290602}
   - component: {fileID: 236290601}
   - component: {fileID: 236290599}
+  - component: {fileID: 236290608}
   - component: {fileID: 236290598}
   - component: {fileID: 236290597}
   - component: {fileID: 236290604}
@@ -513,6 +514,17 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 236290597}
+        m_MethodName: GetMoveInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 236290600}
         m_MethodName: GetMoveInput
         m_Mode: 0
         m_Arguments:
@@ -810,6 +822,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d636958e81518b41993b55cebc565ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &236290608
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236290596}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 6058cfa1b2157e04b9cc980381a21ecc, type: 3}
+  m_Controller: {fileID: 9100000, guid: f59d943362101844697628cae686355c, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &253244591
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,7 +945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 2.382128, z: -4.476722}
+  m_FollowOffset: {x: 0, y: 2.672434, z: -4.293398}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1088,7 +1119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 2.382128, z: -4.476722}
+  m_FollowOffset: {x: 0, y: 2.672434, z: -4.293398}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1214,7 +1245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 4.413127, z: -8.036399}
+  m_FollowOffset: {x: 0, y: 3.72269, z: -7.869178}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1876,7 +1907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 4.413127, z: -8.036399}
+  m_FollowOffset: {x: 0, y: 3.72269, z: -7.869178}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1941,6 +1972,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: f59d943362101844697628cae686355c, type: 2}
+    - target: {fileID: -6057140222963153312, guid: 6058cfa1b2157e04b9cc980381a21ecc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6058cfa1b2157e04b9cc980381a21ecc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2116,7 +2152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 4.413127, z: -8.036399}
+  m_FollowOffset: {x: 0, y: 3.72269, z: -7.869178}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -2242,7 +2278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 2.382128, z: -4.476722}
+  m_FollowOffset: {x: 0, y: 2.672434, z: -4.293398}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -4408,8 +4444,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043027948}
-  m_LocalRotation: {x: 0.000027668915, y: 0.9686417, z: -0.24846208, w: 0.000107868625}
-  m_LocalPosition: {x: 0.000011936087, y: -0.5768728, z: -0.053601265}
+  m_LocalRotation: {x: 0.000030377605, y: 0.96205926, z: -0.2728406, w: 0.00010711402}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 516441102}

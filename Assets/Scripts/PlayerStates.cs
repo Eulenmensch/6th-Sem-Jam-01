@@ -12,7 +12,6 @@ public class PlayerStates : Singleton<PlayerStates>
         Walking,
         Jumping,
         DoubleJumping,
-        WallRunning,
         Dashing,
         Falling
     }

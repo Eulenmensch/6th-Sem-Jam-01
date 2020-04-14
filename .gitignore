@@ -80,3 +80,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+Assets/ImportedAssets/Horizon Based Ambient Occlusion/SRP/HDRP.unitypackage.meta
+Assets/ImportedAssets/Horizon Based Ambient Occlusion/SRP/URP.unitypackage.meta
