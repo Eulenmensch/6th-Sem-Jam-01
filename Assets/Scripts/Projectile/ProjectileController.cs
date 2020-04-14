@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class ProjectileController : MonoBehaviour
 {
     public float ProjectileSpeed;
+    public float ProjectileBulletTimeSpeed;
     public GameObject Projectile;
     public float KillDistance;
 
@@ -19,7 +20,14 @@ public class ProjectileController : MonoBehaviour
     void Shoot()
     {
         Destroy(GameObject.FindGameObjectWithTag("Projectile"));
-        InputEvents.Instance.ShootProjectile(Projectile, GetAimDirection(), ProjectileSpeed, KillDistance);
+        if (Time.timeScale < 1)
+        {
+            InputEvents.Instance.ShootProjectile(Projectile, GetAimDirection(), ProjectileBulletTimeSpeed, KillDistance);
+        }
+        else
+        {
+            InputEvents.Instance.ShootProjectile(Projectile, GetAimDirection(), ProjectileSpeed, KillDistance);
+        }
     }
 
     public void GetShootInput(InputAction.CallbackContext context)
