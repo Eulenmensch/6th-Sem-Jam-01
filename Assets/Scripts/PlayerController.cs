@@ -254,6 +254,7 @@ public class PlayerController : MonoBehaviour
         if (context.started && (PlayerStates.Instance.MovementState == PlayerStates.MovementStates.Jumping || PlayerStates.Instance.MovementState == PlayerStates.MovementStates.Falling))
         {
             IsReceivingDoubleJumpInput = true;
+            gameObject.SendMessage("DoubleJump");
         }
     }
 }
